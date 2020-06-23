@@ -7,7 +7,7 @@ const app = express();
 
 //load the quotes JSON
 const quotes = require("./quotes.json");
-
+const name = "this is ";
 // Now register handlers for some routes:
 //   /                  - Return some helpful welcome info (text)
 //   /quotes            - Should return all quotes (json)
@@ -17,7 +17,14 @@ app.get("/", function (request, response) {
 });
 
 //START OF YOUR CODE...
-
+app.get("/quotes", function (request, response) {
+  response.send(quotes.map((item , index) => {
+    item.quote
+    item.author
+    index
+    name
+  }));
+});
 //...END OF YOUR CODE
 
 //You can use this function to pick one element at random from a given array
