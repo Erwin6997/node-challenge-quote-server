@@ -7,13 +7,26 @@ const app = express();
 
 //load the quotes JSON
 const quotes = require("./quotes.json");
-const name = "this is ";
+
+//lodash.js
+const lodash = require('lodash');
+app.get("/quick" , (req , res) =>{
+  lodash.sample(quotes)
+  res.send(lodash.sample(quotes));
+});
+
+var cors = require('cors')
+app.use(cors())
+
+app.get('/foo', function(req, res) {
+  res.header('Access-Control-Allow-Origin', '*')
+})
 // Now register handlers for some routes:
 //   /                  - Return some helpful welcome info (text)
 //   /quotes            - Should return all quotes (json)
 //   /quotes/random     - Should return ONE quote (json)
 app.get("/", function (request, response) {
-  response.send("Neill's Quote Server!  Ask me for /quotes/random, /quotes or /quotes/search !");
+  response.send("Neill's Quote Server! Ask me for! for random quote : /quotes/random or /quick , for all quotes : /quotes , for search quotes : /quotes/search ! ");
 });
 
 //START OF YOUR CODE...
@@ -32,12 +45,14 @@ app.get('/quotes/search', (req, res) => {
     element.quote.toLowerCase().includes(term.term.toLowerCase()) ||
     element.author.toLowerCase().includes(term.term.toLowerCase())
   })
-  res.send(search);
+  res.send(lodash.sample(search));
 });
 
 app.get('/two', function(req, res) {
   res.send("You asked for route /two")
 });
+
+
 //...END OF YOUR CODE
 
 //You can use this function to pick one element at random from a given array
