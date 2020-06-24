@@ -48,9 +48,6 @@ app.get('/quotes/search', (req, res) => {
   res.send(lodash.sample(search));
 });
 
-app.get('/two', function(req, res) {
-  res.send("You asked for route /two")
-});
 
 
 //...END OF YOUR CODE
